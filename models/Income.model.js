@@ -9,8 +9,8 @@ const incomeSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ['salary', 'other'],
-      default: 'salary',
+      required: [true, 'Category is required.'],
+      default: 'Salary',
     },
     amount: {
       type: Number,
