@@ -37,7 +37,7 @@ router.get('/expenses/:expenseId', isAuthenticated, async (req, res, next) => {
     let oneExpense = await Expense.findById(expenseId);
     res.status(200).json(oneExpense);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong geting one expense from DB: ${error.message}` });
+    res.status(500).json({ message: `Something went wrong getting one expense from DB: ${error.message}` });
   }
 });
 
@@ -59,7 +59,7 @@ router.patch('/expenses/:expenseId', isAuthenticated, async (req, res, next) => 
   }
 });
 
-/************************** DELETE INCOME *********************************/
+/************************** DELETE EXPENSE *********************************/
 
 router.delete('/expenses/:expenseId', isAuthenticated, async (req, res, next) => {
   try {
