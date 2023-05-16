@@ -9,12 +9,15 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
+    name: {
+      type: String,
+      required: [true, 'Name is required.'],
+    },
     password: {
       type: String,
       required: [true, 'Password is required.'],
     },
-    incomes: [{ type: Schema.Types.ObjectId, ref: 'Income' }],
-    expenses: [{ type: Schema.Types.ObjectId, ref: 'Expense' }],
+    months: [{ type: Schema.Types.ObjectId, ref: 'Month' }],
   },
   {
     timestamps: true,

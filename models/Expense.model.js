@@ -15,7 +15,7 @@ const expenseSchema = new Schema(
       type: Number,
       required: [true, 'Amount is required.'],
     },
-    userId: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    monthId: { type: Schema.Types.ObjectId, ref: 'Month' },
   },
   {
     timestamps: true,
