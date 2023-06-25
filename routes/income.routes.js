@@ -15,7 +15,7 @@ router.post('/incomes', isAuthenticated, async (req, res, next) => {
       res.status(401).json({ message: 'Specified monthId is not valid' });
       return;
     }
-    let createdIncome = await Income.create(req.body);
+    let createdIncome = await Income.create({ ...req.body, createdAt: req.body.creationDate });
 
     await Month.findByIdAndUpdate(monthId, { $push: { incomes: createdIncome._id } }, { new: true });
 
