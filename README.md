@@ -33,7 +33,7 @@ Clone the budget-manager-client repository to your local machine using the follo
 
 - Clone project
 - Open with your favourite IDE
-- npm install - To instal the dependencies
+- npm install - To install the dependencies
 - create .env file in the root of the project - see .env-EXAMPLE
 - in app.constants file update the url of `projectApi` to `http://localhost:5005/api`,
 - npm run dev - To run the app at localhost:5005
