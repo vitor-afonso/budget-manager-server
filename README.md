@@ -13,7 +13,7 @@ Clone the Repositories
 Clone this repository to your local machine using the following command:
 `git clone https://github.com/vitor-afonso/budget-manager-server.git`
 
-Clone the budget-manager-client repository to your local machine using the following command:
+Clone the budget-manager-nextjs repository to your local machine using the following command:
 `git clone https://github.com/vitor-afonso/budget-manager-nextjs.git`
 
 
