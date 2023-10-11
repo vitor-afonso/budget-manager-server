@@ -19,7 +19,7 @@ const expenseSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = model('Expense', expenseSchema);

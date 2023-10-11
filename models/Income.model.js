@@ -14,7 +14,7 @@ const incomeSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = model('Income', incomeSchema);

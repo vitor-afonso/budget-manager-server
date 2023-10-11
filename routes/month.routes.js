@@ -19,11 +19,19 @@ router.post('/months', isAuthenticated, async (req, res, next) => {
 
     let createdMonth = await Month.create(req.body);
 
-    await User.findByIdAndUpdate(userId, { $push: { months: createdMonth._id } }, { new: true });
+    await User.findByIdAndUpdate(
+      userId,
+      { $push: { months: createdMonth._id } },
+      { new: true },
+    );
 
     res.status(200).json(createdMonth);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong creating new month: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong creating new month: ${error.message}`,
+      });
   }
 });
 
@@ -36,11 +44,17 @@ router.get('/months/user/:userId', isAuthenticated, async (req, res, next) => {
       res.status(401).json({ message: 'Specified userId is not valid' });
       return;
     }
-    const allMonths = await Month.find({ userId: userId, deleted: false }).populate({ path: 'incomes' }).populate({ path: 'expenses' });
+    const allMonths = await Month.find({ userId: userId, deleted: false })
+      .populate({ path: 'incomes' })
+      .populate({ path: 'expenses' });
 
     res.status(200).json(allMonths);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong getting months from DB: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong getting months from DB: ${error.message}`,
+      });
   }
 });
 
@@ -65,7 +79,11 @@ router.get('/months/:monthId', isAuthenticated, async (req, res, next) => {
     }
     res.status(200).json(oneMonth);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong getting one month from DB: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong getting one month from DB: ${error.message}`,
+      });
   }
 });
 
@@ -79,11 +97,17 @@ router.put('/months/:monthId', isAuthenticated, async (req, res, next) => {
       res.status(401).json({ message: 'Specified monthId is not valid' });
       return;
     }
-    let response = await Month.findByIdAndUpdate(monthId, req.body, { new: true });
+    let response = await Month.findByIdAndUpdate(monthId, req.body, {
+      new: true,
+    });
 
     res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong updating month: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong updating month: ${error.message}`,
+      });
   }
 });
 
@@ -98,11 +122,17 @@ router.patch('/months/:monthId', isAuthenticated, async (req, res, next) => {
       return;
     }
 
-    let deletedMonth = await Month.findByIdAndUpdate(monthId, req.body, { new: true });
+    let deletedMonth = await Month.findByIdAndUpdate(monthId, req.body, {
+      new: true,
+    });
 
     res.status(200).json(deletedMonth);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong deleting month: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong deleting month: ${error.message}`,
+      });
   }
 });
 

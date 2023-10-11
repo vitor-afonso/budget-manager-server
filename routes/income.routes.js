@@ -15,13 +15,24 @@ router.post('/incomes', isAuthenticated, async (req, res, next) => {
       res.status(401).json({ message: 'Specified monthId is not valid' });
       return;
     }
-    let createdIncome = await Income.create({ ...req.body, createdAt: req.body.creationDate });
+    let createdIncome = await Income.create({
+      ...req.body,
+      createdAt: req.body.creationDate,
+    });
 
-    await Month.findByIdAndUpdate(monthId, { $push: { incomes: createdIncome._id } }, { new: true });
+    await Month.findByIdAndUpdate(
+      monthId,
+      { $push: { incomes: createdIncome._id } },
+      { new: true },
+    );
 
     res.status(200).json(createdIncome);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong creating income: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong creating income: ${error.message}`,
+      });
   }
 });
 
@@ -37,7 +48,11 @@ router.get('/incomes/:incomeId', isAuthenticated, async (req, res, next) => {
     let oneIncome = await Income.findById(incomeId);
     res.status(200).json(oneIncome);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong getting one income from DB: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong getting one income from DB: ${error.message}`,
+      });
   }
 });
 
@@ -51,11 +66,17 @@ router.patch('/incomes/:incomeId', isAuthenticated, async (req, res, next) => {
       res.status(401).json({ message: 'Specified incomeId is not valid' });
       return;
     }
-    let response = await Income.findByIdAndUpdate(incomeId, req.body, { new: true });
+    let response = await Income.findByIdAndUpdate(incomeId, req.body, {
+      new: true,
+    });
 
     res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong updating income: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong updating income: ${error.message}`,
+      });
   }
 });
 
@@ -80,9 +101,17 @@ router.delete('/incomes/:incomeId', isAuthenticated, async (req, res, next) => {
       }),
     });
 
-    res.status(200).json({ message: `Income with id: ${incomeId} was deleted and corresponding month incomes successfully updated.` });
+    res
+      .status(200)
+      .json({
+        message: `Income with id: ${incomeId} was deleted and corresponding month incomes successfully updated.`,
+      });
   } catch (error) {
-    res.status(500).json({ message: `Something went wrong deleting income: ${error.message}` });
+    res
+      .status(500)
+      .json({
+        message: `Something went wrong deleting income: ${error.message}`,
+      });
   }
 });
 
