@@ -13,6 +13,9 @@ const monthSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    weekLimitAmount: {
+      type: Number
+    },
   },
   {
     timestamps: true,
